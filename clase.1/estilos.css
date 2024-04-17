@@ -1,0 +1,33 @@
+/* background-color Propiedad para indicar el color de fondo del elemento.
+background-image Propiedad para indicar la imagen que va a estar de fondo del elemento.
+background-repete Propiedad que permite repetir una imagen de fondo.
+background Abrevia todas las propiedades de estilo de fondo a la vez.Puede ser como color ,imagen,repeticion,etc.
+border-radius Propiedad que permite redondear los bordes.
+border-top/border-bottom /border-left/border-right Propiedad que sirve para indicarle el estilo a dos borde en particular (los de arriba/los de abajo/los izquierdos/los derechos)
+border / Propiedad que abrevia todas las propiedades de estilo del borde del elemento
+margin-top/margin-bottom/ margin-left/margin-right Propiedades que sirven para indicar el estilo de ciertos márgenes (los de arriba/los de abajo/los izquierdos/los derechos)
+margin Propiedad que abrevia todas las propiedades de estilo del margin del elemento.El margin es el espacio que se encuentra por fuera del border
+padding-top/padding-bottom/ padding-lefti/padding-right Propiedades que sirven para indicar el estilo de ciertos paddings (los de arriba/los de abajo/los izquierdos/los derechos)
+padding Propiedad que abrevia todas las propiedades de estilo del padding.El padding es el relleno del elemento, donde se encuentra lo que colocas en la etiqueta.
+Box-shadow Propiedad que permite agregarle efectos de sombra al contenedor del elemento.
+box-sizing Propiedad para ajustar el borde y relleno .
+z-index Propiedad que permite manipular los elementos en el plano vertical (que elemento va a estar delante de otro)
+width Especifica el ancho de los elementos
+max-width / min-width Indicas hasta que ancho máximo/minimo puede llegar a tener el elemento
+height Especifica la altura del elemento
+max-height/min-height Indica hasta que altura maxima/minima puede llegar a tener el elemento. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
