@@ -1,43 +1,55 @@
-.auth-container, .register-container {
+/* RegisterPage.css */
+.register-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #f4f4f4;
 }
 
-.auth-form, .register-form {
-    background: #d31414;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-    text-align: center;
+.register-form {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
 }
 
-.label {
+.input-group label {
     display: block;
-    margin-bottom: 10px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
     color: #fff;
-}
-
-.input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
     border: none;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: green;
-    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
     cursor: pointer;
-    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+p {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
 }

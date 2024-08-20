@@ -1,40 +1,44 @@
 import React, { useState } from 'react';
+import './singupform.css';
 
 function SignupPage() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [newUsername, setNewUsername] = useState('');
+    const [newPassword, setNewPassword] = useState('');
     const [error, setError] = useState('');
 
     const handleSignup = () => {
-        if (!username || !password) {
+        if (!newUsername || !newPassword) {
             setError('Todos los campos son obligatorios');
             return;
         }
 
-        localStorage.setItem('user', JSON.stringify({ username, password }));
+        localStorage.setItem('newUser', JSON.stringify({ username: newUsername, password: newPassword }));
 
         window.location.href = '/login';
     };
 
     return (
-        <div>
+        <div className="signup-container">
             <h2>Crear Cuenta</h2>
             <input
                 type="text"
                 placeholder="Nombre de Usuario"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={newUsername}
+                onChange={(e) => setNewUsername(e.target.value)}
+                className="signup-input"
             />
             <input
                 type="password"
                 placeholder="Contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="signup-input"
             />
-            <button onClick={handleSignup}>Registrarse</button>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <button onClick={handleSignup} className="signup-button">Registrarse</button>
+            {error && <p className="signup-error">{error}</p>}
         </div>
     );
 }
 
 export default SignupPage;
+

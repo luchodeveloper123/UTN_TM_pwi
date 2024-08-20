@@ -1,97 +1,100 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import'./chatdetails.css';
+import './chatdetails.css';
+
 function ChatDetails() {
-const { id } = useParams();
-const [chatData, setChatData] = useState(null);
-const [newMessage, setNewMessage] = useState('');
+    const { chatId } = useParams();
+    const [selectedChat, setSelectedChat] = useState(null);
+    const [messageInput, setMessageInput] = useState('');
 
-useEffect(() => {
-    const fetchChatData = async () => {
-    const chats = {
-        1: {
-        nombre: 'Lisa',
-        mensajes: [
-            { autor: 'Lisa', texto: '¿Ya terminaste la tarea?' },
-            { autor: 'Tú', texto: 'no, y tu?' }
-        ],
-        },
-        2: {
-        nombre: 'Homero',
-        mensajes: [
-            { autor: 'Homero', texto: 'Mmm... rosquillas' },
-            { autor: 'Tú', texto: 'Qué ricas' }
-        ],
-        },
-        3: {
-        nombre: 'Flanders',
-        mensajes: [
-            { autor: 'Flanders', texto: '¡Hola, vecino!' },
-            { autor: 'Tú', texto: 'Hola, Flanders' }
-        ],
-        },
-        4: {
-        nombre: 'Marge',
-        mensajes: [
-            { autor: 'Marge', texto: 'Recuerda llevar el almuerzo.' },
-            { autor: 'Tú', texto: 'gracias por recordarmelo' }
-        ],
-        },
+    useEffect(() => {
+        const fetchSelectedChat = async () => {
+            const chatDatabase = {
+                1: {
+                    chatName: 'Lisa',
+                    chatMessages: [
+                        { sender: 'Lisa', content: '¿Ya terminaste la tarea?' },
+                        { sender: 'Tú', content: 'No, ¿y tú?' }
+                    ],
+                },
+                2: {
+                    chatName: 'Homero',
+                    chatMessages: [
+                        { sender: 'Homero', content: 'Mmm... rosquillas' },
+                        { sender: 'Tú', content: 'Qué ricas' }
+                    ],
+                },
+                3: {
+                    chatName: 'Flanders',
+                    chatMessages: [
+                        { sender: 'Flanders', content: '¡Hola, vecino!' },
+                        { sender: 'Tú', content: 'Hola, Flanders' }
+                    ],
+                },
+                4: {
+                    chatName: 'Marge',
+                    chatMessages: [
+                        { sender: 'Marge', content: 'Recuerda llevar el almuerzo.' },
+                        { sender: 'Tú', content: 'Gracias por recordármelo' }
+                    ],
+                },
+            };
+
+            const data = chatDatabase[chatId];
+            setSelectedChat(data);
+        };
+
+        fetchSelectedChat();
+    }, [chatId]);
+
+    const handleSendMessage = (e) => {
+        e.preventDefault();
+
+        if (messageInput.trim() === '') return;
+
+        const updatedChatMessages = [
+            ...selectedChat.chatMessages,
+            { sender: 'Tú', content: messageInput }
+        ];
+
+        setSelectedChat((prevData) => ({
+            ...prevData,
+            chatMessages: updatedChatMessages,
+        }));
+
+        setMessageInput('');
     };
 
-    const data = chats[id];
-    setChatData(data);
-    };
+    if (!selectedChat) {
+        return <div>Cargando chat...</div>;
+    }
 
-    fetchChatData();
-}, [id]);
-
-const handleSendMessage = (e) => {
-    e.preventDefault();
-
-    if (newMessage.trim() === '') return;
-
-    const updatedMessages = [
-    ...chatData.mensajes,
-    { autor: 'Tú', texto: newMessage }
-    ];
-
-    setChatData((prevData) => ({
-    ...prevData,
-    mensajes: updatedMessages,
-    }));
-
-    setNewMessage('');
-};
-
-if (!chatData) {
-    return <div>Cargando chat...</div>;
-}
-
-return (
-    <div>
-    <h2>Chat con {chatData.nombre}</h2>
-    <div>
-        {chatData.mensajes.map((mensaje, index) => (
-        <div key={index}>
-            <strong>{mensaje.autor}:</strong> {mensaje.texto}
+    return (
+        <div className="chat-details-container">
+            <h2 className="chat-title">Chat con {selectedChat.chatName}</h2>
+            <div className="chat-messages">
+                {selectedChat.chatMessages.map((message, index) => (
+                    <div key={index} className="chat-message">
+                        <strong>{message.sender}:</strong> {message.content}
+                    </div>
+                ))}
+            </div>
+            <form onSubmit={handleSendMessage} className="message-form">
+                <input
+                    type="text"
+                    value={messageInput}
+                    onChange={(e) => setMessageInput(e.target.value)}
+                    placeholder="Escribe un mensaje..."
+                    className="message-input"
+                />
+                <button type="submit" className="send-button">Enviar</button>
+            </form>
         </div>
-        ))}
-    </div>
-    <form onSubmit={handleSendMessage}>
-        <input
-        type="text"
-        value={newMessage}
-        onChange={(e) => setNewMessage(e.target.value)}
-        placeholder="Escribe un mensaje..."
-        />
-        <button type="submit">Enviar</button>
-    </form>
-    </div>
-);
+    );
 }
 
 export default ChatDetails;
+
 
 
 
